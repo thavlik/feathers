@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-expressions */
 
-const { expect } = require('chai');
+import { expect } from 'chai';
 
-const {
+import {
   _,
   stripSlashes,
   isPromise,
   makeUrl,
   createSymbol
-} = require('../lib');
+} from '../lib';
 
 describe('@feathersjs/commons utils', () => {
   it('stripSlashes', () => {

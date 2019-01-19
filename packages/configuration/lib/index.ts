@@ -1,13 +1,14 @@
 const makeDebug = require('debug');
-const path = require('path');
+import path from 'path';
+import { Application } from '@feathersjs/feathers';
 
 const debug = makeDebug('@feathersjs/configuration');
-const config = require('config');
+import config from 'config';
 const separator = path.sep;
 
-function init () {
-  return function () {
-    let app = this;
+export function init () {
+  return function<ServiceTypes>()  {
+    let app: Application<ServiceTypes> = this;
 
     const convert = current => {
       const result = Array.isArray(current) ? [] : {};
@@ -46,7 +47,7 @@ function init () {
 
     debug(`Initializing configuration for ${env} environment`);
 
-    if (!app || app === global) {
+    if (!app || app as any === global) {
       return conf;
     }
 
@@ -57,6 +58,4 @@ function init () {
     });
   };
 }
-
-module.exports = init;
-module.exports.default = init;
+export default init;

@@ -1,12 +1,12 @@
 const { _: { each, pick }, createSymbol } = require('./utils');
 
 // To skip further hooks
-const SKIP = createSymbol('__feathersSkipHooks');
+export const SKIP = createSymbol('__feathersSkipHooks');
 
-exports.SKIP = SKIP;
-exports.ACTIVATE_HOOKS = createSymbol('__feathersActivateHooks');
+export const ACTIVATE_HOOKS = createSymbol('__feathersActivateHooks');
 
-exports.createHookObject = function createHookObject (method, data = {}) {
+
+export const createHookObject = function (method, data: any = {}) {
   const hook = {};
 
   Object.defineProperty(hook, 'toJSON', {
@@ -33,7 +33,7 @@ exports.createHookObject = function createHookObject (method, data = {}) {
 };
 
 // Fallback used by `makeArguments` which usually won't be used
-exports.defaultMakeArguments = function defaultMakeArguments (hook) {
+export function defaultMakeArguments (hook) {
   const result = [];
 
   if (typeof hook.id !== 'undefined') {
@@ -51,7 +51,7 @@ exports.defaultMakeArguments = function defaultMakeArguments (hook) {
 
 // Turns a hook object back into a list of arguments
 // to call a service method with
-exports.makeArguments = function makeArguments (hook) {
+export function makeArguments (hook) {
   switch (hook.method) {
     case 'find':
       return [ hook.params ];
@@ -70,7 +70,7 @@ exports.makeArguments = function makeArguments (hook) {
 
 // Converts different hook registration formats into the
 // same internal format
-exports.convertHookData = function convertHookData (obj) {
+export function convertHookData (obj) {
   let hook = {};
 
   if (Array.isArray(obj)) {
@@ -88,7 +88,7 @@ exports.convertHookData = function convertHookData (obj) {
 
 // Duck-checks a given object to be a hook object
 // A valid hook object has `type` and `method`
-exports.isHookObject = function isHookObject (hookObject) {
+export function isHookObject (hookObject) {
   return typeof hookObject === 'object' &&
     typeof hookObject.method === 'string' &&
     typeof hookObject.type === 'string';
@@ -97,7 +97,7 @@ exports.isHookObject = function isHookObject (hookObject) {
 // Returns all service and application hooks combined
 // for a given method and type `appLast` sets if the hooks
 // from `app` should be added last (or first by default)
-exports.getHooks = function getHooks (app, service, type, method, appLast = false) {
+export function getHooks (app, service, type, method, appLast = false) {
   const appHooks = app.__hooks[type][method] || [];
   const serviceHooks = service.__hooks[type][method] || [];
 
@@ -109,7 +109,7 @@ exports.getHooks = function getHooks (app, service, type, method, appLast = fals
   return appHooks.concat(serviceHooks);
 };
 
-exports.processHooks = function processHooks (hooks, initialHookObject) {
+export function processHooks (hooks, initialHookObject) {
   let hookObject = initialHookObject;
   let updateCurrentHook = current => {
     // Either use the returned hook object or the current
@@ -154,7 +154,7 @@ exports.processHooks = function processHooks (hooks, initialHookObject) {
 };
 
 // Add `.hooks` functionality to an object
-exports.enableHooks = function enableHooks (obj, methods, types) {
+export function enableHooks (obj, methods, types) {
   if (typeof obj.hooks === 'function') {
     return obj;
   }
@@ -203,4 +203,17 @@ exports.enableHooks = function enableHooks (obj, methods, types) {
       return this;
     }
   });
+};
+
+export default {
+  SKIP,
+  ACTIVATE_HOOKS,
+  createHookObject,
+  defaultMakeArguments,
+  makeArguments,
+  convertHookData,
+  isHookObject,
+  getHooks,
+  processHooks,
+  enableHooks
 };

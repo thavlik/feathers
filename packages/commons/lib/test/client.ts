@@ -1,6 +1,6 @@
-const assert = require('assert');
+import assert from 'assert';
 
-module.exports = function (app, name) {
+export default function (app, name) {
   const getService = () => (name && typeof app.service === 'function')
     ? app.service(name) : app;
 

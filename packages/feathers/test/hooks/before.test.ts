@@ -1,5 +1,5 @@
-const assert = require('assert');
-const feathers = require('../../lib');
+import assert from 'assert';
+import feathers from '../../lib';
 
 describe('`before` hooks', () => {
   describe('function([hook])', () => {

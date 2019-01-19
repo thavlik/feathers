@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const { _ } = require('../lib');
+import { expect } from 'chai';
+import { _ } from '../lib';
 
 describe('module', () => {
   it('is commonjs compatible', () => {

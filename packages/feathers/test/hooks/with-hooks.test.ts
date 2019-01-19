@@ -1,9 +1,9 @@
 
-const assert = require('assert');
-const feathers = require('../../lib');
-const { withHooks } = require('../../lib/hooks');
+import assert from 'assert';
+import feathers from '../../lib';
+import { withHooks } from '../../lib/hooks';
 
-function createApp (findResult) {
+function createApp (findResult?: any) {
   return feathers()
     .use('svc', {
       create (data) {

@@ -1,4 +1,4 @@
-const { _ } = require('@feathersjs/commons');
+import { _ } from '@feathersjs/commons';
 
 const assignArguments = context => {
   const { service, method } = context;
@@ -32,4 +32,4 @@ const validate = context => {
   return context;
 };
 
-module.exports = [ assignArguments, validate ];
+export default [ assignArguments, validate ];

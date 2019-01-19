@@ -23,9 +23,9 @@
   "engines": {
     "node": ">= 6"
   },
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "mocha --opts ../../mocha.opts"
+    "test": "mocha --require ts-node/register test/**/*.ts --opts ../../mocha.opts"
   },
   "directories": {
     "lib": "lib"
@@ -34,7 +34,11 @@
     "access": "public"
   },
   "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
     "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.4"
   }
 }

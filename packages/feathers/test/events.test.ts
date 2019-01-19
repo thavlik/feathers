@@ -1,7 +1,7 @@
-const assert = require('assert');
-const { EventEmitter } = require('events');
+import assert from 'assert';
+import { EventEmitter } from 'events';
 
-const feathers = require('../lib');
+import feathers from '../lib';
 
 describe('Service events', () => {
   it('app is an event emitter', done => {
@@ -20,7 +20,7 @@ describe('Service events', () => {
     const app = feathers();
     const service = new EventEmitter();
 
-    service.create = function (data) {
+    (service as any).create = function (data) {
       return Promise.resolve(data);
     };
 

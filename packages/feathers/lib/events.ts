@@ -1,9 +1,9 @@
-const { EventEmitter } = require('events');
-const Proto = require('uberproto');
+import { EventEmitter } from 'events';
+import Proto from 'uberproto';
 
 // Returns a hook that emits service events. Should always be
 // used as the very last hook in the chain
-const eventHook = exports.eventHook = function eventHook () {
+export function eventHook () {
   return function (hook) {
     const { app, service } = hook;
     const eventName = app.eventMappings[hook.method];
@@ -19,7 +19,7 @@ const eventHook = exports.eventHook = function eventHook () {
 };
 
 // Mixin that turns a service into a Node event emitter
-const eventMixin = exports.eventMixin = function eventMixin (service) {
+export function eventMixin (service) {
   if (service._serviceEvents) {
     return;
   }
@@ -61,7 +61,7 @@ const eventMixin = exports.eventMixin = function eventMixin (service) {
   });
 };
 
-module.exports = function () {
+export default function () {
   return function (app) {
     // Mappings from service method to event name
     Object.assign(app, {

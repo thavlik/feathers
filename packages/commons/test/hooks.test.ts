@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const { hooks } = require('../lib');
+import { expect } from 'chai';
+import { hooks } from '../lib';
 
 describe('hook utilities', () => {
   describe('.makeArguments', () => {
@@ -392,7 +392,7 @@ describe('hook utilities', () => {
 
   describe('.enableHooks', () => {
     it('with custom types', () => {
-      const base = {};
+      const base: any = {};
 
       hooks.enableHooks(base, [], ['test']);
 
@@ -402,7 +402,7 @@ describe('hook utilities', () => {
     });
 
     it('does nothing when .hooks method exists', () => {
-      const base = {
+      const base: any = {
         hooks () {}
       };
 
@@ -411,7 +411,7 @@ describe('hook utilities', () => {
     });
 
     describe('.hooks method', () => {
-      let base = {};
+      let base: any = {};
 
       beforeEach(() => {
         base = hooks.enableHooks({}, [ 'testMethod' ], [ 'dummy' ]);

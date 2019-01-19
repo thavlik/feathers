@@ -13,7 +13,7 @@
     "socket.io",
     "realtime"
   ],
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "author": {
     "name": "Feathers contributor",
     "email": "hello@feathersjs.com",
@@ -27,7 +27,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "mocha --opts ../../mocha.opts",
+    "test": "mocha --require ts-node/register test/**/*.ts --opts ../../mocha.opts",
     "update-version": "node -e \"console.log('module.exports = \\'' + require('./package.json').version + '\\';')\" > lib/version.js",
     "version": "npm run update-version"
   },
@@ -44,6 +44,10 @@
     "uberproto": "^2.0.2"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.18",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.4"
   }
 }

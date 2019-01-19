@@ -1,7 +1,7 @@
-const assert = require('assert');
-const Proto = require('uberproto');
-const { hooks } = require('@feathersjs/commons');
-const feathers = require('../lib');
+import assert from 'assert';
+import Proto from 'uberproto';
+import { hooks } from '@feathersjs/commons';
+import feathers from '../lib';
 
 describe('Feathers application', () => {
   it('adds an ES module `default` export', () => {

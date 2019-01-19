@@ -1,10 +1,10 @@
 // Removes all leading and trailing slashes from a path
-exports.stripSlashes = function stripSlashes (name) {
+export const stripSlashes = (name: string) => {
   return name.replace(/^(\/+)|(\/+)$/g, '');
 };
 
 // A set of lodash-y utility functions that use ES6
-const _ = exports._ = {
+export const _ = {
   each (obj, callback) {
     if (obj && typeof obj.forEach === 'function') {
       obj.forEach(callback);
@@ -49,8 +49,8 @@ const _ = exports._ = {
     return typeof value === 'object' && value !== null;
   },
 
-  extend (...args) {
-    return Object.assign(...args);
+  extend (...args: any[]) {
+    return Object.assign.apply(undefined, args);
   },
 
   omit (obj, ...keys) {
@@ -89,12 +89,12 @@ const _ = exports._ = {
 };
 
 // Duck-checks if an object looks like a promise
-exports.isPromise = function isPromise (result) {
+export function isPromise (result) {
   return _.isObject(result) &&
     typeof result.then === 'function';
 };
 
-exports.makeUrl = function makeUrl (path, app = {}) {
+export function makeUrl (path: string, app: any = {}) {
   const get = typeof app.get === 'function' ? app.get.bind(app) : () => {};
   const env = get('env') || process.env.NODE_ENV;
   const host = get('host') || process.env.HOST_NAME || 'localhost';
@@ -107,6 +107,14 @@ exports.makeUrl = function makeUrl (path, app = {}) {
   return `${protocol}://${host}${port}/${exports.stripSlashes(path)}`;
 };
 
-exports.createSymbol = name => {
+export function createSymbol (name: string) {
   return typeof Symbol !== 'undefined' ? Symbol(name) : name;
+};
+
+export default {
+  stripSlashes,
+  _,
+  isPromise,
+  makeUrl,
+  createSymbol
 };

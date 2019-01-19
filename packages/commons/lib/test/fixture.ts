@@ -1,4 +1,4 @@
-const assert = require('assert');
+import assert from 'assert';
 
 const findAllData = [{
   id: 0,
@@ -8,7 +8,11 @@ const findAllData = [{
   description: 'You have to do laundry'
 }];
 
-exports.Service = {
+declare global {
+  function thingThatDoesNotExist();
+}
+
+export const Service = {
   events: [ 'log' ],
 
   find () {

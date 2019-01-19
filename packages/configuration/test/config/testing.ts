@@ -6,10 +6,10 @@
 // This configuration file has `.js` suffix, and must provide
 // a `module.exports` containing the configuration properties.
 
-var derivedSetting = 'Hello World';
-var derivedEnvironment = 'NODE_ENV';
+const derivedSetting = 'Hello World';
+const derivedEnvironment = 'NODE_ENV';
 
-module.exports = {
+export default {
   from: 'testing',
   testEnvironment: 'NODE_ENV',
   derived: derivedSetting,

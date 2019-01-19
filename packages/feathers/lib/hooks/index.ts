@@ -1,27 +1,30 @@
-const { hooks, isPromise, _ } = require('@feathersjs/commons');
-const baseHooks = require('./base');
+import { hooks, isPromise, _ } from '@feathersjs/commons';
+import baseHooks from './base';
+import { Application, HooksObject, HookMap, Service } from '../application';
 
 const {
   createHookObject,
   getHooks,
   processHooks,
   enableHooks,
-  ACTIVATE_HOOKS
 } = hooks;
+
+export const ACTIVATE_HOOKS = hooks.ACTIVATE_HOOKS;
 
 const makeArguments = (service, method, hookObject) => service.methods[ method ].reduce((result, value) => ([
   ...result,
   hookObject[ value ]
 ]), []);
 
-const withHooks = function withHooks ({
-  app,
-  service,
-  method,
-  original
+export function withHooks (args: {
+  app: Application;
+  service: Service<any>;
+  method: string;
+  original?: Function;
 }) {
+  const { app, service, method, original } = args;
   return (_hooks = {}) => {
-    const hooks = app.hookTypes.reduce((result, type) => {
+    const hooks: any = app.hookTypes.reduce((result, type) => {
       const value = _hooks[type] || [];
 
       result[type] = Array.isArray(value) ? value : [ value ];
@@ -113,7 +116,7 @@ const withHooks = function withHooks ({
 };
 
 // A service mixin that adds `service.hooks()` method and functionality
-const hookMixin = exports.hookMixin = function hookMixin (service) {
+export function hookMixin (service) {
   if (typeof service.hooks === 'function') {
     return;
   }
@@ -169,7 +172,7 @@ const hookMixin = exports.hookMixin = function hookMixin (service) {
   service.mixin(mixin);
 };
 
-module.exports = function () {
+export default function () {
   return function (app) {
     // We store a reference of all supported hook types on the app
     // in case someone needs it
@@ -184,11 +187,8 @@ module.exports = function () {
   };
 };
 
-module.exports.withHooks = withHooks;
 
-module.exports.ACTIVATE_HOOKS = ACTIVATE_HOOKS;
-
-module.exports.activateHooks = function activateHooks (args) {
+export function activateHooks (args) {
   return fn => {
     Object.defineProperty(fn, ACTIVATE_HOOKS, { value: args });
     return fn;
