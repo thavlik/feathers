@@ -1,0 +1,41 @@
+export declare const stripSlashes: (name: string) => string;
+export declare const _: {
+    each(obj: any, callback: any): void;
+    some(value: any, callback: any): boolean;
+    every(value: any, callback: any): boolean;
+    keys(obj: any): string[];
+    values(obj: any): any[];
+    isMatch(obj: any, item: any): boolean;
+    isEmpty(obj: any): boolean;
+    isObject(item: any): boolean;
+    isObjectOrArray(value: any): boolean;
+    extend(...args: any[]): any;
+    omit(obj: any, ...keys: any[]): any;
+    pick(source: any, ...keys: any[]): any;
+    merge(target: any, source: any): any;
+};
+export declare function isPromise(result: any): boolean;
+export declare function makeUrl(path: string, app?: any): string;
+export declare function createSymbol(name: string): string | symbol;
+declare const _default: {
+    stripSlashes: (name: string) => string;
+    _: {
+        each(obj: any, callback: any): void;
+        some(value: any, callback: any): boolean;
+        every(value: any, callback: any): boolean;
+        keys(obj: any): string[];
+        values(obj: any): any[];
+        isMatch(obj: any, item: any): boolean;
+        isEmpty(obj: any): boolean;
+        isObject(item: any): boolean;
+        isObjectOrArray(value: any): boolean;
+        extend(...args: any[]): any;
+        omit(obj: any, ...keys: any[]): any;
+        pick(source: any, ...keys: any[]): any;
+        merge(target: any, source: any): any;
+    };
+    isPromise: typeof isPromise;
+    makeUrl: typeof makeUrl;
+    createSymbol: typeof createSymbol;
+};
+export default _default;

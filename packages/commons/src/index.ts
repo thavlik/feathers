@@ -1,7 +1,3 @@
-// const utils = require('./utils');
-// const hooks = require('./hooks');
-// module.exports = Object.assign({}, utils, { hooks });
-
 export { default as hooks } from "./hooks";
 export { default as utils } from "./utils";
 

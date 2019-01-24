@@ -1,0 +1,23 @@
+export declare const SKIP: any;
+export declare const ACTIVATE_HOOKS: any;
+export declare const createHookObject: (method: any, data?: any) => any;
+export declare function defaultMakeArguments(hook: any): any[];
+export declare function makeArguments(hook: any): any;
+export declare function convertHookData(obj: any): {};
+export declare function isHookObject(hookObject: any): boolean;
+export declare function getHooks(app: any, service: any, type: any, method: any, appLast?: boolean): any;
+export declare function processHooks(hooks: any, initialHookObject: any): any;
+export declare function enableHooks(obj: any, methods: any, types: any): any;
+declare const _default: {
+    SKIP: any;
+    ACTIVATE_HOOKS: any;
+    createHookObject: (method: any, data?: any) => any;
+    defaultMakeArguments: typeof defaultMakeArguments;
+    makeArguments: typeof makeArguments;
+    convertHookData: typeof convertHookData;
+    isHookObject: typeof isHookObject;
+    getHooks: typeof getHooks;
+    processHooks: typeof processHooks;
+    enableHooks: typeof enableHooks;
+};
+export default _default;

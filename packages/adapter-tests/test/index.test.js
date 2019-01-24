@@ -2,6 +2,10 @@ const memory = require('feathers-memory');
 const errors = require('@feathersjs/errors');
 const feathers = require('@feathersjs/feathers');
 
+console.log(`FEATHERS TYPE: ${typeof feathers}`);
+console.dir(feathers);
+
+
 const adapterTests = require('../lib');
 const testSuite = adapterTests([
   '.events',
